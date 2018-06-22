@@ -24,7 +24,7 @@ INSERT INTO `ea_settings` (`name`, `value`) VALUES
 	('google_sync_notice', 'no'),
 	('google_sync_from', ''),
 	('google_sync_to', ''),
-	('wp_invoice','no')
+	('wp_invoice','no');
 
 INSERT INTO `ea_cellcarrier` (`id`, `cellco`, `cellurl`) VALUES
 	(1, 'Bell', '@txt.bell.ca'),  
