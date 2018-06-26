@@ -75,39 +75,13 @@ window.FrontendBook = window.FrontendBook || {};
 		var show_any_provider;
 		show_any_provider = GlobalVariables.showAnyProvider;
 
-		var fDaynum;
-		var fDay = GlobalVariables.weekStartson;
+        var fDay = GlobalVariables.weekStartson;
+        var fDaynum = GeneralFunctions.getWeekDayId(fDay);
+	console.log('NZ-frontend_book.js -> fDaynum ' + fDaynum + ' fDay ' + fDay + ' maxDate ' + max_date + ' ShowFreePriceCurrency ' + show_free_price_currency + ' ShowAnyProvider ' + show_any_provider);
 
-		switch(fDay) {
-			case "sunday":
-				fDaynum = 0;
-				break;
-			case "monday":
-				fDaynum = 1;
-				break;
-			case "tuesday":
-				fDaynum = 2;
-				break;
-			case "wednesday":
-				fDaynum = 3;
-				break;
-			case "thursday":
-				fDaynum = 4;
-				break;
-			case "friday":
-				fDaynum = 5;
-				break;
-			case "saturday":
-				fDaynum = 6;
-				break;
-			default:
-				fDaynum = 0;
-				break;
-		}
-		console.log('NZ-frontend_book.js -> fDaynum ' + fDaynum + ' fDay ' + fDay + ' maxDate ' + max_date + ' ShowFreePriceCurrency ' + show_free_price_currency + ' ShowAnyProvider ' + show_any_provider);
         $('#select-date').datepicker({
             dateFormat: 'dd-mm-yy',
-            firstDay: fDaynum, // Monday
+            firstDay: fDaynum,
             minDate: 0,
 			maxDate: "+" + max_date + "d", //MaxDate mod Craig Tucker 2
             defaultDate: Date.today(),
