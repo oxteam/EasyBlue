@@ -1022,10 +1022,8 @@ window.BackendCalendarDefaultView = window.BackendCalendarDefaultView || {};
 
 
         var defaultView = window.innerWidth < 468 ? 'agendaDay' : 'agendaWeek';
-		var fDay = GlobalVariables.weekStartson;
-                var fDaynum = GeneralFunctions.getWeekDayId(fDay);
 
-		var timeFormat;
+        var timeFormat;
         switch(GlobalVariables.timeFormat) {
             case 'AM/PM':
                 timeFormat = 'hh:mm tt';
@@ -1037,13 +1035,16 @@ window.BackendCalendarDefaultView = window.BackendCalendarDefaultView || {};
                 throw new Error('Invalid GlobalVariables.timeFormat value.');
         }	
 
-		console.log('NZ-backend_calendar_default_view.js -> fDaynum ' + fDaynum + ' fDay ' + fDay);
+        var fDay = GlobalVariables.weekStartson;
+        var fDaynum = GeneralFunctions.getWeekDayId(fDay);
+        console.log('NZ-backend_calendar_default_view.js -> fDaynum ' + fDaynum + ' fDay ' + fDay);
+
         // Initialize page calendar
         $('#calendar').fullCalendar({
             defaultView: defaultView,
             height: _getCalendarHeight(),
             editable: true,
-            firstDay: fDaynum, // Monday
+            firstDay: fDaynum,
             slotMinutes: 30,
             snapMinutes: 15,
             axisFormat: timeFormat,

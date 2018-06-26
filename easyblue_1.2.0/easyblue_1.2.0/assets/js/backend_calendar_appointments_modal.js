@@ -389,37 +389,8 @@ window.BackendCalendarAppointmentsModal = window.BackendCalendarAppointmentsModa
             default:
                 throw new Error('Invalid GlobalVariables.dateFormat value.');
         }
-		var fDaynum;
-		var fDay = GlobalVariables.weekStartson;
 
-		switch(fDay) {
-			case "sunday":
-				fDaynum = 0;
-				break;
-			case "monday":
-				fDaynum = 1;
-				break;
-			case "tuesday":
-				fDaynum = 2;
-				break;
-			case "wednesday":
-				fDaynum = 3;
-				break;
-			case "thursday":
-				fDaynum = 4;
-				break;
-			case "friday":
-				fDaynum = 5;
-				break;
-			case "saturday":
-				fDaynum = 6;
-				break;
-			default:
-				fDaynum = 0;
-				break;
-		}
-
-		var timeFormat;
+        var timeFormat;
         switch(GlobalVariables.timeFormat) {
             case 'AM/PM':
                 timeFormat = 'hh:mm tt';
@@ -431,7 +402,9 @@ window.BackendCalendarAppointmentsModal = window.BackendCalendarAppointmentsModa
                 throw new Error('Invalid GlobalVariables.timeFormat value.');
         }	
 
-		console.log('NZ-backend_calendar_appointments_modal.js -> fDaynum ' + fDaynum + ' fDay ' + fDay + ' date/time string = ' + dateFormat + ' ' + timeFormat);
+        var fDay = GlobalVariables.weekStartson;
+        var fDaynum = GeneralFunctions.getWeekDayId(fDay);
+        console.log('NZ-backend_calendar_appointments_modal.js -> fDaynum ' + fDaynum + ' fDay ' + fDay + ' date/time string = ' + dateFormat + ' ' + timeFormat);
 		
         $dialog.find('#start-datetime').datetimepicker({
 			
@@ -459,7 +432,7 @@ window.BackendCalendarAppointmentsModal = window.BackendCalendarAppointmentsModa
             timeText: EALang['time'],
             hourText: EALang['hour'],
             minuteText: EALang['minutes'],
-            firstDay: fDaynum // Monday
+            firstDay: fDaynum
 			
         });
         $dialog.find('#start-datetime').datetimepicker('setDate', startDatetime);
@@ -490,7 +463,7 @@ window.BackendCalendarAppointmentsModal = window.BackendCalendarAppointmentsModa
             timeText: EALang['time'],
             hourText: EALang['hour'],
             minuteText: EALang['minutes'],
-            firstDay: fDaynum // Monday
+            firstDay: fDaynum
         });
         $dialog.find('#end-datetime').datetimepicker('setDate', endDatetime);
     };
